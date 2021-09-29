@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="shortcut icon" href="pics/fastTransitLogo.png"  type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/DataTables-1.10.25/jquery.dataTables.min.css"> <!--- done datatables--->
+    <link rel="stylesheet" href="css/bootstrap-4.6.0-dist/bootstrap.min.css"> <!--- done boostrap 4.6--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/bootstrap-4.6.0-dist/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/DataTables-1.10.25/jquery.dataTables.min.js"></script>
+    <script src="js/1.12.1.jquery-ui.js"></script>
+    <script src="js/fastTransitJS.js"></script>
+
+    <title>Driver</title>
+</head>
+<body onload="lastloader()">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-sm-6" style="padding : 10px;">
+                <img src="pics/fastTransitLogo.png" alt="fastTransitLogo" height="20px" width="170px">
+            </div>
+            <div class="col-sm-6">
+              <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-bell"></span></a>
+                  <div class="dropdown-menu" style="margin-right: 85px;">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">All Notifications</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span></a>
+                  <div class="dropdown-menu" style="width: 100px; margin-right: 85px;">
+                    <a class="dropdown-item" href="#"><span class="fa fa-user"> User Profile</span></a>
+                    <a class="dropdown-item" href="https://fasttransit.biz/admin/"><span class="fa fa-sign-out"> Sign Out</span></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="row" style="background-color: #00498A;">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="index.html"> <span class="fa fa-home"></span> Dashboard</a>
+                    </li>   
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="booking.html"> <span class="fa fa-book"></span> Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="vehicles.html"> <span class="fa fa-car"></span> Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: white;" href="rates.html"> <span class="fa fa-dollar"></span> Rates</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-id-card"></span> Driver</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="remitance.html">Remittance</a>
+                            <a class="dropdown-item" href="list.html" style="background-color: #005FB5;">List</a>
+                        </div>
+                      </li>
+                  </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6" id="row3col1">
+                <p >Driver's List</p>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                      <div class="row">
+                          <div class="col-sm-6">
+                             <span class="fa fa-info-circle"></span> Driver's information
+                          </div>
+                          <div class="col-sm-6 text-right">
+                              <button data-toggle="modal" data-target="#exampleModal"  class="btn btn-primary btn-sm"><span class="fa fa-plus"></span> Add driver</button>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="example" class="display table-bordered" style="width:100%; text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Name</th>
+                                    <th>Contact No</th>
+                                    <th>License No</th>
+                                    <th>License Expiry</th> 
+                                    <th>Status</th> 
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                  </div>
+            </div>
+        </div> 
+         <!-- Modal for adding vehicle-->
+         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Vehicle</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow-y: auto; height: 400px;">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon3" style="font-weight: bold; width: 130px;">First name</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon3" style="font-weight: bold; width: 130px;">Middle name</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon3" style="font-weight: bold; width: 130px;">Last name</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon3" style="font-weight: bold; width: 130px;">Contact no</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon3" style="font-weight: bold; width: 130px;">Email</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon3"style="font-weight: bold; width: 130px;">License no</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                          
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon3"style="font-weight: bold; width: 130px;">License expiry</span>
+                            </div>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-success">Insert</button>
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</body>
+</html>

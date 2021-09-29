@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="shortcut icon" href="pics/fastTransitLogo.png"  type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/DataTables-1.10.25/jquery.dataTables.min.css"> <!--- done datatables--->
+    <link rel="stylesheet" href="css/bootstrap-4.6.0-dist/bootstrap.min.css"> <!--- done boostrap 4.6--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/bootstrap-4.6.0-dist/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/DataTables-1.10.25/jquery.dataTables.min.js"></script>
+    <script src="js/1.12.1.jquery-ui.js"></script>
+    <script src="js/fastTransitJS.js"></script>
+
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-sm-6" style="padding : 10px;">
+                <img src="pics/fastTransitLogo.png" alt="fastTransitLogo" height="20px" width="170px">
+            </div>
+            <div class="col-sm-6">
+              <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-bell"></span></a>
+                  <div class="dropdown-menu" style="margin-right: 85px;">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">All Notifications</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span></a>
+                  <div class="dropdown-menu" style="width: 100px; margin-right: 85px;">
+                    <a class="dropdown-item" href="#"><span class="fa fa-user"> User Profile</span></a>
+                    <a class="dropdown-item" href="https://fasttransit.biz/admin/"><span class="fa fa-sign-out"> Sign Out</span></a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="row" style="background-color: #00498A;">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white; background-color: #005FB5; font-family: 'Roboto', sans-serif;" href="index.html"> <span class="fa fa-home"></span> Dashboard</a>
+                    </li>   
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="booking.html"> <span class="fa fa-book"></span> Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="vehicles.html"> <span class="fa fa-car"></span> Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: white;" href="rates.html"> <span class="fa fa-dollar"></span> Rates</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-id-card"></span> Driver</a>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="remitance.html">Remittance</a>
+                          <a class="dropdown-item" href="list.html">List</a>
+                        </div>
+                      </li>
+                  </ul>
+            </div>
+        </div>
+        <div class="row" id="floatingDiv">
+          <div class="col-sm-12">      
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Plate number" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2"><span class="fa fa-search"></span></span>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row justify-content-end" style="position: relative;">
+          <div id="floatingdivSecond">
+            <div class="btn-group-vertical">
+             <button class="green">Available <span style="margin-left: 7px;" class="badge badge-light">10</span></button>
+             <button class="orange">On Pick up <span class="badge badge-light">0</span></button>
+             <button class="blue">Enroute <span style="margin-left: 18px;" class="badge badge-light">1</span></button>
+             <button class="gray">Idle <span style="margin-left: 47px;" class="badge badge-light">0</span></button>
+             <button class="red">Traffic <span class="fa fa-road"></span></button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" id="map"></div>
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk37HdklF3wWm5l4W-6Abx7xyxkQNbpfo&callback=initMap&libraries=&v=weekly" async></script>
+    </div>
+ 
+</body>
+</html>

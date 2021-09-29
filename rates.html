@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="shortcut icon" href="pics/fastTransitLogo.png"  type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/DataTables-1.10.25/jquery.dataTables.min.css"> <!--- done datatables--->
+    <link rel="stylesheet" href="css/bootstrap-4.6.0-dist/bootstrap.min.css"> <!--- done boostrap 4.6--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/bootstrap-4.6.0-dist/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/DataTables-1.10.25/jquery.dataTables.min.js"></script>
+    <script src="js/1.12.1.jquery-ui.js"></script>
+    <script src="js/fastTransitJS.js"></script>
+    <title>Rates</title>
+</head>
+<body onload="loader5()">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-sm-6" style="padding : 10px;">
+                <img src="pics/fastTransitLogo.png" alt="fastTransitLogo" height="20px" width="170px">
+            </div>
+            <div class="col-sm-6">
+                <ul class="nav nav-pills justify-content-end">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-bell"></span></a>
+                    <div class="dropdown-menu" style="margin-right: 85px;">
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">All Notifications</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span></a>
+                    <div class="dropdown-menu" style="width: 100px; margin-right: 85px;">
+                      <a class="dropdown-item" href="#"><span class="fa fa-user"> User Profile</span></a>
+                      <a class="dropdown-item" href="https://fasttransit.biz/admin/"><span class="fa fa-sign-out"> Sign Out</span></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+        </div>
+
+        <div class="row" style="background-color: #00498A;">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="index.html"> <span class="fa fa-home"></span> Dashboard</a>
+                    </li>   
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="booking.html"> <span class="fa fa-book"></span> Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="vehicles.html"> <span class="fa fa-car"></span> Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: white; background-color: #005FB5;" href="rates.html"> <span class="fa fa-dollar"></span> Rates</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-id-card"></span> Driver</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="remitance.html">Remittance</a>
+                            <a class="dropdown-item" href="list.html">List</a>
+                        </div>
+                      </li>
+                  </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6" id="row3col1">
+                <p >Rates</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                      <div class="row">
+                          <div class="col-sm-12">
+                             <span class="fa fa-info-circle"></span> Rates's information
+                          </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="example" class="display table-bordered" style="width:100%; text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Origin</th>
+                                    <th>Destination</th>
+                                    <th>Last Updated</th>
+                                    <th>Tagged</th>
+                                    <th>Rates</th> 
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                  </div>
+            </div>
+        </div> 
+        
+        <!-- Modal for viweing rates -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel" style="background-color: #00498A;">View Rate: CBU0024</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1" style="width: 100px;">Origin</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Mactan Cebu International Airport Terminal, Lapu-Lapu City, Cebu, Philippines" aria-label="Username" aria-describedby="basic-addon1" readonly>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1" style="width: 100px;">Destination</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Dalaguete, Cebu, Philippines" aria-label="Username" aria-describedby="basic-addon1" readonly>
+                  </div>
+
+                  <select  id="mySelect" onchange="myFunction()" class="form-control">
+                    <option>Select service type</option>
+                    <option>Drop off</option>
+                    <option>Open</option>
+                    <option>Round trip</option>
+                  </select>  
+                    <br>
+                  <table class="table" id="tableContent" style="display: none;">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry the Bird</td>
+                        <td>Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+ 
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="shortcut icon" href="pics/fastTransitLogo.png"  type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="css/DataTables-1.10.25/jquery.dataTables.min.css"> <!--- done datatables--->
+    <link rel="stylesheet" href="css/bootstrap-4.6.0-dist/bootstrap.min.css"> <!--- done boostrap 4.6--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/bootstrap-4.6.0-dist/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/DataTables-1.10.25/jquery.dataTables.min.js"></script>
+    <script src="js/1.12.1.jquery-ui.js"></script>
+    <script src="js/fastTransitJS.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+
+    <title>Bookings</title>
+</head>
+<body onload="loader(); loader2(); loader3();">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-sm-6" style="padding : 10px;">
+                <img src="pics/fastTransitLogo.png" alt="fastTransitLogo" height="20px" width="170px">
+            </div>
+            <div class="col-sm-6">
+                <ul class="nav nav-pills justify-content-end">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-book"></span></a>
+                        <div class="dropdown-menu" style="margin-right: 100px;">
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">All Notifications</a>
+                        </div>
+                      </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-bell"></span></a>
+                    <div class="dropdown-menu" style="margin-right: 85px;">
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">All Notifications</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span></a>
+                    <div class="dropdown-menu" style="width: 100px; margin-right: 85px;">
+                      <a class="dropdown-item" href="#"><span class="fa fa-user"> User Profile</span></a>
+                      <a class="dropdown-item" href="https://fasttransit.biz/admin/"><span class="fa fa-sign-out"> Sign Out</span></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+        </div>
+
+        <div class="row" style="background-color: #00498A;">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="index.html"> <span class="fa fa-home"></span> Dashboard</a>
+                    </li>   
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white; background-color: #005FB5;" href="#"> <span class="fa fa-book"></span> Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: white;" href="vehicles.html"> <span class="fa fa-car"></span> Vehicles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: white;" href="rates.html"> <span class="fa fa-dollar"></span> Rates</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <span class="fa fa-id-card"></span> Driver</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="remitance.html">Remittance</a>
+                            <a class="dropdown-item" href="list.html">List</a>
+                        </div>
+                      </li>
+                  </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6" id="row3col1">
+                <p >Bookings</p>
+            </div>
+            <div class="col-sm-6">
+                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right" style="margin-top: 10px;"><span class="fa fa-plus"></span> Add Booking</button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"> <span class="fa fa-book"></span> Reservation List</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"> <span class="fa fa-book"></span> Dispatch List</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"> <span class="fa fa-book"></span> All Booking List</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="example" class="display table-bordered" style="width:100%; text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Passenger</th>
+                                            <th>Origin</th>
+                                            <th>Destination</th>
+                                            <th>Vehicle</th>
+                                            <th>Pickup Time</th>
+                                            <th>Priority Status</th> 
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                          </div>
+                        
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="card">
+                            
+                            <div class="card-body">
+                                <table id="example2" class="display table-bordered" style="width:100%; text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th>Driver</th>
+                                            <th>Passenger</th>
+                                            <th>Origin</th>
+                                            <th>Destination</th>
+                                            <th>Date</th>
+                                            <th>Status</th> 
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                          </div>
+                        
+                    </div>
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                        <div class="card">
+                          
+                            <div class="card-body">
+                                <table id="example3" class="display table-bordered" style="width:100%; text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th>Account</th>
+                                            <th>Passenger</th>
+                                            <th>Origin</th>
+                                            <th>Destination</th>
+                                            <th>Date Time</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                          </div>
+                      
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <!-- Modal for cancel-->
+        <div class="modal" id="cancelmodal" tabindex="-1" aria-labelledby="cancelmodal" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: red;">
+                    <img class="center" src="pics/cancel.gif" width="100%" alt="cancel">
+                    </div>
+                    <div class="modal-body">
+                        <h3>Cancel dispatch DP5810949661? </h1>
+                          <h5>This booking will be transfered to active booking list!</h3>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-success">CANCEL</button>
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">OKAY</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for end-->
+        <div class="modal" id="endmodal" tabindex="-1" aria-labelledby="endmodal" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color: red;">
+                    <img class="center" src="pics/cancel.gif" width="100%" alt="cancel">
+                    </div>
+                    <div class="modal-body">
+                        <h3>End dispatch DP5810949661? </h1>
+                          <h5>This booking will be forcely finish.</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success">CANCEL</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OKAY</button>
+                    </div>
+                  </div>
+             </div>
+        </div>
+
+         <!-- Modal for booking list details-->
+         <div class="modal fade" id="bookinglistdetails" tabindex="-1" aria-labelledby="bookinglistdetails" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookinglistdetails" style="font-weight: bold; color: white;">BOOKING DETAILS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow-y: auto; height: 400px;">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Booking No</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Account</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Passenger</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Contact No</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Origin</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Destination</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Amount</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Discount</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Payment Type</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Service Type</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Vehicle Type</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Prefered Driver</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Actual Driver</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Vehicle Used</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Status</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Modal for dispatch-->
+         <div class="modal fade" id="dispatchingmodal" tabindex="-1" aria-labelledby="dispatchingmodal" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="dispatchingmodal" style="font-weight: bold; color: white;">DISPATCH: BK699350241</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow-y: auto; height: 400px;">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>Origin:</td>
+                            <td>IT Park, IT Park, Apas, Cebu City, Cebu</td>
+                          </tr>
+                          <tr>
+                            <td>Destination:</td>
+                            <td>Mandaue, Cebu</td>
+                          </tr>
+                          <tr>
+                            <td>Account:</td>
+                            <td>WALK-IN CUSTOMER n/a</td>
+                          </tr>
+                          <tr>
+                            <td>Group Name:</td>
+                            <td>KANEKI</td>
+                          </tr>
+                          <tr>
+                            <td>Service Type:</td>
+                            <td>Drop Off</td>
+                          </tr>
+                          <tr>
+                            <td>Vehicle Type:</td>
+                            <td>VAN</td>
+                          </tr>
+                          <tr>
+                            <td>Prefered Driver:</td>
+                            <td>None</td>
+                          </tr>
+                          <tr>
+                            <td>Amount:</td>
+                            <td>0</td>
+                          </tr>
+                      
+                        </tbody>
+                      </table>
+                      <table class="table">
+                        <thead style="background-color: #00498A; color: white;">
+                          <tr>
+                            <th scope="col">Passenger </th>
+                            <th scope="col">Contact # </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>KANEKI</td>
+                            <td>09185531869</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+                    </div>
+                    <div class="modal-footer" style="display: block;">
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Online</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Offline</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">With Dispatch</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                          <br>
+                          <div class="row">
+                            <div class="col-sm-7">
+                              <div class="input-group">
+                                <input style="width: 30px;" type="text" class="form-control" aria-label="Text input with dropdown button" value="Driver" readonly>
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary dropdown-toggle" style="width:190px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose here</button>
+                                  <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">VINCE RODRIGUEZ (4.04 km)</a>
+                                    <a class="dropdown-item" href="#">ARA RODRIGUEZ (6.04 km)</a>
+                                    <a class="dropdown-item" href="#">SUGOI RODRIGUEZ (10.04 km)</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-5 text-right">
+                              <button type="button" class="btn btn-success">Confirm</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                          <br>
+                          <div class="row">
+                            <div class="col-sm-7">
+                              <div class="input-group">
+                                <input style="width: 30px;" type="text" class="form-control" aria-label="Text input with dropdown button" value="Driver" readonly>
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary dropdown-toggle" style="width:190px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose here</button>
+                                  <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">VINCE RODRIGUEZ (4.04 km)</a>
+                                    <a class="dropdown-item" href="#">ARA RODRIGUEZ (6.04 km)</a>
+                                    <a class="dropdown-item" href="#">SUGOI RODRIGUEZ (10.04 km)</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-5 text-right">
+                              <button type="button" class="btn btn-success">Confirm</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                          <br>
+                          <div class="row">
+                            <div class="col-sm-7">
+                              <div class="input-group">
+                                <input style="width: 30px;" type="text" class="form-control" aria-label="Text input with dropdown button" value="Driver" readonly>
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary dropdown-toggle" style="width:190px;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose here</button>
+                                  <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">VINCE RODRIGUEZ (4.04 km)</a>
+                                    <a class="dropdown-item" href="#">ARA RODRIGUEZ (6.04 km)</a>
+                                    <a class="dropdown-item" href="#">SUGOI RODRIGUEZ (10.04 km)</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-5 text-right">
+                              <button type="button" class="btn btn-success">Confirm</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for updating booking-->
+        <div class="modal fade" id="updatebookingmodal" tabindex="-1" aria-labelledby="updatebookingmodal" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updatebookingmodal" style="font-weight: bold; color: white;">UPDATE BOOKING FORM</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow-y: auto; height: 400px;">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Booking No</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Account</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Passenger</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Contact No</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Origin</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Destination</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Pick-up Date</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Amount</span>
+                        </div>
+                        <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Discount</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Payment Type</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Service Type</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Vehicle Type</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="width: 130px;" class="input-group-text" id="basic-addon1">Prefered Driver</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-success">Update Booking</button>
+                        <button type="button" class="btn btn-danger" onclick="closeModal()">Cancel Booking</button>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Modal for adding booking-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ADD BOOKING FORM</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card" style="width: 380px" >
+                                    <div class="card-body" id="firstCard">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="basic-addon1"><span class="fa fa-user-circle"></span></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Account" aria-label="Account" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="basic-addon1"><span class="fa fa-users"></span></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Passenger" aria-label="Passenger" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="basic-addon1"><span class="fa fa-street-view"></span></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Pick Up" aria-label="Pick Up" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="basic-addon1"><span class="fa fa-location-arrow"></span></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Destination" aria-label="Destination" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="basic-addon1"><span class="fa fa-car"></span></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Vehicle" aria-label="Vehicle" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="basic-addon1"><span class="fa fa-rocket"></span></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Service" aria-label="Service" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 380px;" >
+                                  <div class="card-body" id="secondCard" style="display: none;">
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Date</span>
+                                      </div>
+                                      <input type="date" class="form-control" placeholder="date" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                      </div>
+                                      <select class="form-control">
+                                        <option>Default select</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="map2"></div>
+                            </div>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk37HdklF3wWm5l4W-6Abx7xyxkQNbpfo&callback=initMap2&libraries=&v=weekly" async></script>  
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                         <div class="row">
+                           <div class="col-sm-6">
+                            <div class="btn-group" style="color: white;" role="group" aria-label="Basic example">
+                              <button type="button" class="btn btn-info btn-sm" id="stepLabel"  disabled >Step 1/2</button>
+                              <button type="button" class="btn btn-secondary btn-sm" onclick="nextStep()" id="next" value="nextStep">Next Step</button>
+                            </div>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                            <button type="button" class="btn btn-success" style="display: none;" id="confirmButton">Confirm</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                           </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</body>
+</html>

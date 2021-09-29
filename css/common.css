@@ -1,0 +1,144 @@
+body{
+    font-size: 100px;
+}
+#firstnavcontent{
+    color: white;
+}
+#firstnavcontent :hover{
+    background-color: #389FFC;
+}
+#row3col1 p{
+    font-weight: bold; 
+    font-size: 30px;
+}
+
+.modal-header{
+    background-color: #00498A;
+}
+#basic-addon1{
+    width: 45px;
+}
+#map{
+    height: 100vh;
+    width: 100%;
+    padding: 5px;
+}
+#map2{
+    height: 360px;
+    width: 100%;
+    padding: 5px;
+}
+#exampleModalLabel{
+    color: white;
+}
+
+#floatingDiv{
+    position: absolute;
+    z-index: 1;
+    margin-top: 2%;
+}
+#floatingdivSecond{
+    position: absolute;
+    z-index: 1;
+    margin-top: 5%;
+}
+.green{
+    background-color: rgba(22, 243, 18, 0.5);
+    width: 100%;
+    margin-right: 2%;
+    color: #fff;
+    border-color: rgba(22, 243, 18, 0.5);
+    margin-right: 10px;
+}
+.green :hover{
+    color:#fff;
+    background-color:#218838;
+    border-color:#1e7e34;
+}
+.green:focus{
+    color:#fff;
+    background-color:rgba(22, 243, 18, 0.5);
+    border-color:rgba(22, 243, 18, 0.5);
+ 
+}
+.orange{
+    background-color: rgba(247, 192, 13, 0.5);
+    width: 100%;
+    margin-right: 2%;
+    color: #fff;
+    border-color: rgba(247, 192, 13, 0.5);
+}
+.orange :hover{
+    color:#fff;
+    background-color:rgba(247, 192, 13, 0.5);
+    border-color:rgba(247, 192, 13, 0.5);
+}
+.orange:focus{
+    color:#fff;
+    background-color:rgba(247, 192, 13, 0.5);
+    border-color:rgba(247, 192, 13, 0.5);
+ 
+}
+.blue{
+    background-color: rgba(32, 100, 236, 0.742);
+    width: 100%;
+    margin-right: 2%;
+    color: #fff;
+    border-color: rgba(32, 100, 236, 0.742);
+}
+.blue :hover{
+    color:#fff;
+    background-color:rgba(32, 100, 236, 0.742);
+    border-color:rgba(32, 100, 236, 0.742);
+}
+.blue:focus{
+    color:#fff;
+    background-color:rgba(32, 100, 236, 0.742);
+    border-color:rgba(32, 100, 236, 0.742);
+ 
+}
+.gray{
+    background-color: rgba(166, 170, 179, 0.742);
+    width: 100%;
+    margin-right: 2%;
+    color: #fff;
+    border-color: rgba(166, 170, 179, 0.742);
+}
+.gray :hover{
+    color:#fff;
+    background-color:rgba(166, 170, 179, 0.742);
+    border-color:rgba(166, 170, 179, 0.742);
+}
+.gray:focus{
+    color:#fff;
+    background-color:rgba(166, 170, 179, 0.742);
+    border-color: rgba(166, 170, 179, 0.742);
+ 
+}
+.red{
+    background-color: rgba(241, 23, 23, 0.742);
+    width: 100%;
+    margin-right: 2%;
+    color: #fff;
+    border-color: rgba(241, 23, 23, 0.742);
+}
+.red :hover{
+    color:#fff;
+    background-color:rgba(241, 23, 23, 0.742);
+    border-color:rgba(241, 23, 23, 0.742);
+}
+.red:focus{
+    color:#fff;
+    background-color:rgba(241, 23, 23, 0.742);
+    border-color: rgba(241, 23, 23, 0.742);
+}
+#updateReservationList{
+ cursor: pointer;
+}
+td.details-control {
+    background: url('details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('details_close.png') no-repeat center center;
+}

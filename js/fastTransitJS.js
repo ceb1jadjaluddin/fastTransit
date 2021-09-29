@@ -5,7 +5,7 @@ function loader(){
         $('#example').DataTable({
             "processing": true,
             "ajax": {
-                url: "http://localhost/ftp/api.php",
+                url: "http://localhost/AttendanceTracker/api.php",
                 dataSrc: '',
                 headers: {
                 "Authorization": "Basic " + btoa(username2 + ":" + password2)
@@ -45,7 +45,7 @@ function loader(){
         $('#example2').DataTable({
             "processing": true,
             "ajax": {
-                url: "http://localhost/ftp/api.php",
+                url: "http://localhost/AttendanceTracker/api.php",
                 dataSrc: '',
                 headers: {
                 "Authorization": "Basic " + btoa(username2 + ":" + password2)
@@ -82,7 +82,7 @@ function loader(){
         $('#example3').DataTable({
             "processing": true,
             "ajax": {
-                url: "http://localhost/ftp/api.php",
+                url: "http://localhost/AttendanceTracker/api.php",
                 dataSrc: '',
                 headers: {
                 "Authorization": "Basic " + btoa(username2 + ":" + password2)
@@ -139,7 +139,7 @@ function format ( d ) {
 $(document).ready(function() {
   var table = $('#example').DataTable( {
       "ajax": {
-        url: "http://localhost/ftp/api.php",
+        url: "http://localhost/AttendanceTracker/api.php",
         dataSrc: '',
         headers: {
         "Authorization": "Basic " + btoa(username2 + ":" + password2)
@@ -206,7 +206,7 @@ function format ( d ) {
 $(document).ready(function() {
   var table = $('#example').DataTable( {
       "ajax": {
-        url: "http://localhost/ftp/api.php",
+        url: "http://localhost/AttendanceTracker/api.php",
         dataSrc: '',
         headers: {
         "Authorization": "Basic " + btoa(username2 + ":" + password2)
@@ -273,7 +273,7 @@ function format ( d ) {
 $(document).ready(function() {
   var table = $('#example').DataTable( {
       "ajax": {
-        url: "http://localhost/ftp/api.php",
+        url: "http://localhost/AttendanceTracker/api.php",
         dataSrc: '',
         headers: {
         "Authorization": "Basic " + btoa(username2 + ":" + password2)
